@@ -1,0 +1,32 @@
+@layout('/layout/admin-layout')
+
+@section('content')
+<div>
+  <div>
+    {{ flashMessage('notification') }}
+  </div>
+
+  @each(position in positions)
+  <div>{{ position.title }}</div>
+  @endeach
+
+  <form action="/admin/positions" method="POST">
+    {{ csrfField() }}
+    
+    <div class="form-group">
+      <label for="">Title</label>
+      <input type="text" name="title" class="form-control">
+    </div>
+  
+    <div class="form-group">
+      <label for="">Text</label>
+      <textarea name="text" class="form-control"></textarea>
+    </div>
+  
+    <input id="submit" type="submit" value="Submit" class="btn btn-primary">
+
+    {{ flashMessage('error') }}
+  </form>
+  
+</div>
+@endsection
